@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+   
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -19,9 +19,7 @@
             color: #ffffff;
             overflow-x: hidden;
         }
-        .font-cursive {
-            font-family: 'Dancing Script', cursive;
-        }
+        .font-cursive { font-family: 'Dancing Script', cursive; }
         .glass-card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(16px);
@@ -29,50 +27,24 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
-        .page-step {
-            display: none;
-            animation: fadeIn 0.8s ease-in-out forwards;
-        }
-        .page-step.active {
-            display: block;
-        }
+        .page-step { display: none; animation: fadeIn 0.8s ease-in-out forwards; }
+        .page-step.active { display: block; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Floating background particles */
         #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;
         }
-        /* Scratch canvas styling */
-        .scratch-container {
-            position: relative;
-            width: 100%;
-            height: 120px;
-        }
-        .scratch-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            touch-action: none;
-        }
+        .scratch-container { position: relative; width: 100%; height: 120px; }
+        .scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; touch-action: none; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body class="relative flex flex-col justify-between min-h-screen p-4 md:p-8">
 
-    <!-- Particle Background -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Top Music & Audio Controls -->
     <div class="relative z-10 flex justify-between items-center max-w-2xl mx-auto w-full mb-4">
         <h1 onclick="handleLogoClick()" class="text-2xl font-cursive font-bold text-pink-300 cursor-pointer select-none">
             ✨ Birthday Surprise
@@ -82,10 +54,9 @@
         </button>
     </div>
 
-    <!-- Main Interactive Container -->
-    <main class="relative z-10 max-w-2xl mx-auto w-full flex-1 flex items-center justify-center">
+    <main class="relative z-10 max-w-2xl mx-auto w-full flex-1 flex flex-col items-center justify-center">
 
-    <!-- VINTAGE "OUR SONGS" PLAYER -->
+        <!-- VINTAGE PLAYLIST -->
         <div class="glass-card p-5 rounded-3xl mb-6 w-full max-w-2xl mx-auto border border-white/20">
             <div class="flex items-center gap-3 mb-3">
                 <div class="text-3xl animate-bounce">📻</div>
@@ -94,7 +65,6 @@
                     <p class="text-[11px] text-gray-300">Melodies that remind me of us ✨</p>
                 </div>
             </div>
-            
             <div class="space-y-2">
                 <div class="flex items-center justify-between p-2 rounded-xl bg-white/10 text-xs">
                     <span class="font-medium text-pink-100">1. That 2024 Birthday Memory Song 🎂</span>
@@ -111,25 +81,25 @@
             </div>
         </div>
 
-        <!-- PAGE 1: COVER PAGE -->
+        <!-- PAGE 1 -->
         <div id="page-1" class="page-step active glass-card p-8 rounded-3xl text-center w-full">
             <div class="text-6xl mb-4 animate-bounce">🎈</div>
             <h2 class="text-4xl md:text-5xl font-cursive font-bold text-pink-200 mb-4">A Special Journey For You</h2>
             <p class="text-gray-200 mb-8 text-sm md:text-base leading-relaxed">
                 Welcome to your interactive birthday experience. Put on your headphones, relax, and let's take a stroll down memory lane together.
             </p>
-            <button onclick="goToPage(2)" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition duration-300">
+            <button onclick="goToPage(2)" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition duration-300">
                 Start Your Birthday Journey 🎁
             </button>
         </div>
 
-        <!-- PAGE 2: SECRET PASSCODE CHECK -->
+        <!-- PAGE 2 -->
         <div id="page-2" class="page-step glass-card p-8 rounded-3xl text-center w-full">
             <div class="text-5xl mb-4">🔐</div>
             <h2 class="text-3xl font-bold text-pink-200 mb-2">Security Check</h2>
             <p class="text-gray-300 text-sm mb-6">Enter our secret passcode or anniversary year to unlock your gift.</p>
             <div class="max-w-xs mx-auto mb-4">
-                <input type="password" id="passcode-input" placeholder="Enter PIN (Default: 1234)" class="w-full text-center px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                <input type="password" id="passcode-input" placeholder="Enter PIN (25102002)" class="w-full text-center px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400">
             </div>
             <p id="pin-error" class="text-red-400 text-xs mb-4 hidden">Incorrect passcode! Try again.</p>
             <button onclick="checkPasscode()" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-6 py-3 rounded-full transition">
@@ -137,7 +107,7 @@
             </button>
         </div>
 
-        <!-- PAGE 3: 10-QUESTION MEMORY QUIZ -->
+        <!-- PAGE 3 -->
         <div id="page-3" class="page-step glass-card p-8 rounded-3xl w-full">
             <div class="flex justify-between items-center mb-6">
                 <span class="text-xs font-semibold uppercase tracking-wider text-pink-300">Memory Quiz</span>
@@ -154,28 +124,20 @@
             </div>
         </div>
 
-        <!-- PAGE 4: PRE-WISH EMOTION CHECK -->
+        <!-- PAGE 4 -->
         <div id="page-4" class="page-step glass-card p-8 rounded-3xl text-center w-full">
             <div class="text-5xl mb-4">🤔</div>
             <h2 class="text-3xl font-bold text-pink-200 mb-2">How are you feeling right now?</h2>
             <p class="text-gray-300 text-sm mb-6">Select your current mood before we reveal the candle!</p>
             <div class="grid grid-cols-2 gap-4 mb-6">
-                <button onclick="selectEmotion('pre', 'Excited 🤩')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2">
-                    <span class="text-3xl">🤩</span><span class="text-sm font-medium">Excited</span>
-                </button>
-                <button onclick="selectEmotion('pre', 'Curious 🤔')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2">
-                    <span class="text-3xl">🤔</span><span class="text-sm font-medium">Curious</span>
-                </button>
-                <button onclick="selectEmotion('pre', 'Emotional 🥹')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2">
-                    <span class="text-3xl">🥹</span><span class="text-sm font-medium">Emotional</span>
-                </button>
-                <button onclick="selectEmotion('pre', 'Sleepy 😴')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2">
-                    <span class="text-3xl">😴</span><span class="text-sm font-medium">Sleepy</span>
-                </button>
+                <button onclick="selectEmotion('pre', 'Excited 🤩')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2"><span class="text-3xl">🤩</span><span class="text-sm font-medium">Excited</span></button>
+                <button onclick="selectEmotion('pre', 'Curious 🤔')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2"><span class="text-3xl">🤔</span><span class="text-sm font-medium">Curious</span></button>
+                <button onclick="selectEmotion('pre', 'Emotional 🥹')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2"><span class="text-3xl">🥹</span><span class="text-sm font-medium">Emotional</span></button>
+                <button onclick="selectEmotion('pre', 'Sleepy 😴')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2"><span class="text-3xl">😴</span><span class="text-sm font-medium">Sleepy</span></button>
             </div>
         </div>
 
-        <!-- PAGE 5: CAKE & CANDLE -->
+        <!-- PAGE 5 -->
         <div id="page-5" class="page-step glass-card p-8 rounded-3xl text-center w-full">
             <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-2">Make a Wish!</h2>
             <p class="text-gray-300 text-sm mb-6">Tap the flame to blow out your birthday candle!</p>
@@ -191,99 +153,50 @@
             </button>
         </div>
 
-        <!-- PAGE 6: POST-WISH EMOTION CHECK -->
+        <!-- PAGE 6 -->
         <div id="page-6" class="page-step glass-card p-8 rounded-3xl text-center w-full">
             <div class="text-5xl mb-4">🥳</div>
             <h2 class="text-3xl font-bold text-pink-200 mb-2">How was that?</h2>
             <p class="text-gray-300 text-sm mb-6">How did blowing out the candle make you feel?</p>
             <div class="grid grid-cols-2 gap-4 mb-6">
-                <button onclick="selectEmotion('post', 'Happy 😊')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2">
-                    <span class="text-3xl">😊</span><span class="text-sm font-medium">Happy</span>
-                </button>
-                <button onclick="selectEmotion('post', 'Nostalgic 🥺')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2">
-                    <span class="text-3xl">🥺</span><span class="text-sm font-medium">Nostalgic</span>
-                </button>
-                <button onclick="selectEmotion('post', 'Loved 🥰')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2">
-                    <span class="text-3xl">🥰</span><span class="text-sm font-medium">Loved</span>
-                </button>
-                <button onclick="selectEmotion('post', 'Hyped 🚀')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2">
-                    <span class="text-3xl">🚀</span><span class="text-sm font-medium">Hyped</span>
-                </button>
+                <button onclick="selectEmotion('post', 'Happy 😊')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2"><span class="text-3xl">😊</span><span class="text-sm font-medium">Happy</span></button>
+                <button onclick="selectEmotion('post', 'Nostalgic 🥺')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2"><span class="text-3xl">🥺</span><span class="text-sm font-medium">Nostalgic</span></button>
+                <button onclick="selectEmotion('post', 'Loved 🥰')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2"><span class="text-3xl">🥰</span><span class="text-sm font-medium">Loved</span></button>
+                <button onclick="selectEmotion('post', 'Hyped 🚀')" class="p-4 rounded-2xl glass-card hover:bg-white/20 transition flex flex-col items-center gap-2"><span class="text-3xl">🚀</span><span class="text-sm font-medium">Hyped</span></button>
             </div>
         </div>
 
-        <!-- PAGE 7: MEMORY GALLERY & COMMENTS -->
-        <!-- PAGE 7: MEMORY WALL GRID & POP-UP -->
+        <!-- PAGE 7 -->
         <div id="page-7" class="page-step glass-card p-6 md:p-8 rounded-3xl w-full">
             <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-2 text-center">Our Memory Wall 🖼️</h2>
             <p class="text-gray-300 text-xs md:text-sm mb-6 text-center">Tap any memory box to open the photo & caption!</p>
-            
-            <!-- 10 Tile Memory Grid -->
             <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6 max-h-80 overflow-y-auto p-1">
-                <button onclick="openMemoryModal(0)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">📸</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 1</span>
-                </button>
-                <button onclick="openMemoryModal(1)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">💖</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 2</span>
-                </button>
-                <button onclick="openMemoryModal(2)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">👨‍👩‍👧</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 3</span>
-                </button>
-                <button onclick="openMemoryModal(3)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">💬</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 4</span>
-                </button>
-                <button onclick="openMemoryModal(4)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">✨</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 5</span>
-                </button>
-                <button onclick="openMemoryModal(5)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">🎂</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 6</span>
-                </button>
-                <button onclick="openMemoryModal(6)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">😳</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 7</span>
-                </button>
-                <button onclick="openMemoryModal(7)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">🥺</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 8</span>
-                </button>
-                <button onclick="openMemoryModal(8)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">😎</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 9</span>
-                </button>
-                <button onclick="openMemoryModal(9)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
-                    <span class="text-2xl">🚗</span>
-                    <span class="text-xs font-semibold text-pink-200">Memory 10</span>
-                </button>
+                <button onclick="openMemoryModal(0)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">📸</span><span class="text-xs font-semibold text-pink-200">Memory 1</span></button>
+                <button onclick="openMemoryModal(1)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">💖</span><span class="text-xs font-semibold text-pink-200">Memory 2</span></button>
+                <button onclick="openMemoryModal(2)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">👨‍👩‍👧</span><span class="text-xs font-semibold text-pink-200">Memory 3</span></button>
+                <button onclick="openMemoryModal(3)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">💬</span><span class="text-xs font-semibold text-pink-200">Memory 4</span></button>
+                <button onclick="openMemoryModal(4)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">✨</span><span class="text-xs font-semibold text-pink-200">Memory 5</span></button>
+                <button onclick="openMemoryModal(5)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">🎂</span><span class="text-xs font-semibold text-pink-200">Memory 6</span></button>
+                <button onclick="openMemoryModal(6)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">😳</span><span class="text-xs font-semibold text-pink-200">Memory 7</span></button>
+                <button onclick="openMemoryModal(7)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">🥺</span><span class="text-xs font-semibold text-pink-200">Memory 8</span></button>
+                <button onclick="openMemoryModal(8)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">😎</span><span class="text-xs font-semibold text-pink-200">Memory 9</span></button>
+                <button onclick="openMemoryModal(9)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer"><span class="text-2xl">🚗</span><span class="text-xs font-semibold text-pink-200">Memory 10</span></button>
             </div>
-
-            <!-- Page Comment -->
             <div class="pt-2">
                 <label class="block text-xs text-gray-300 mb-1">Leave a note on our memory wall:</label>
                 <textarea id="gallery-comment" placeholder="Write something sweet..." class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-white text-xs placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
             </div>
-
             <div class="mt-6 text-right">
-                <button onclick="saveGalleryComments(); goToPage(8);" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">
-                    Next Page ➔
-                </button>
+                <button onclick="saveGalleryComments(); goToPage(8);" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">Next Page ➔</button>
             </div>
         </div>
 
-        <!-- MEMORY POP-UP MODAL -->
+        <!-- MEMORY MODAL -->
         <div id="memory-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
             <div class="glass-card p-6 rounded-3xl max-w-sm w-full relative">
                 <button onclick="closeMemoryModal()" class="absolute top-3 right-4 text-gray-300 hover:text-white text-lg font-bold">✕</button>
-                
                 <img id="modal-img" src="photo1.jpg" alt="Memory" class="w-full h-56 object-cover rounded-xl mb-3 shadow-md">
                 <p id="modal-caption" class="text-xs md:text-sm font-medium text-pink-100 mb-4 leading-relaxed text-center"></p>
-
-                <!-- Reactions -->
                 <div class="flex items-center justify-between text-xs mb-4 bg-white/10 p-2 rounded-xl">
                     <span class="text-gray-300">React:</span>
                     <div class="flex gap-3">
@@ -294,756 +207,531 @@
                     </div>
                     <span id="modal-reaction-status" class="text-pink-300 font-semibold"></span>
                 </div>
-
-                <!-- Navigation Controls -->
                 <div class="flex justify-between items-center pt-2 border-t border-white/10">
-                    <button onclick="prevMemory()" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs transition">
-                        ◀ Prev
-                    </button>
+                    <button onclick="prevMemory()" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs transition">◀ Prev</button>
                     <span id="modal-counter" class="text-xs text-gray-300 font-mono">1 / 10</span>
-                    <button onclick="nextMemory()" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full text-xs font-semibold transition">
-                        Next ▶
-                    </button>
+                    <button onclick="nextMemory()" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full text-xs font-semibold transition">Next ▶</button>
                 </div>
             </div>
         </div>
 
-                    </div>
-                    <p class="text-sm font-medium text-pink-100 mb-2">Our very first adventure together!</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo1', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo1', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo1', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo1', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo1" class="text-pink-300 font-semibold"></span>
-                    </div>
-                </div>
-
-                <!-- Comment Section for this page -->
-                <div class="pt-2">
-                    <label class="block text-xs text-gray-300 mb-1">Leave a comment on this memory page:</label>
-                    <textarea id="gallery-comment" placeholder="Write something sweet..." class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-white text-xs placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
-                </div>
-            </div>
-
-            <div class="mt-6 text-right">
-                <button onclick="saveGalleryComments(); goToPage(8);" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">
-                    Next Page ➔
-                </button>
-            </div>
-        </div>
-
-        <!-- PAGE 8: OPEN WHEN ENVELOPES & REASON JAR -->
+        <!-- PAGE 8 -->
         <div id="page-8" class="page-step glass-card p-6 md:p-8 rounded-3xl w-full text-center">
             <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-2">Open When... Envelopes</h2>
             <p class="text-gray-300 text-xs mb-6">Click an envelope to reveal a special note.</p>
-
             <div class="grid grid-cols-2 gap-3 mb-6">
-                <button onclick="openEnvelope('When you miss me', 'Remember that distance means nothing when someone means everything! I am always a call away.')" class="p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-medium transition flex items-center justify-center gap-2">
-                    ✉️ Open when you miss me
-                </button>
-                <button onclick="openEnvelope('When you need a smile', 'Look in the mirror! You have the brightest, most infectious smile in the world.')" class="p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-medium transition flex items-center justify-center gap-2">
-                    ✉️ Open when you need a smile
-                </button>
+                <button onclick="openEnvelope('When you miss me', 'Remember that distance means nothing when someone means everything! I am always a call away.')" class="p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-medium transition flex items-center justify-center gap-2">Open when you miss me</button>
+                <button onclick="openEnvelope('When you need a smile', 'Look in the mirror! You have the brightest, most infectious smile in the world.')" class="p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-medium transition flex items-center justify-center gap-2">Open when you need a smile</button>
             </div>
-
-            <!-- Virtual Reason Jar -->
             <div class="my-6 p-4 rounded-2xl bg-white/5 border border-white/10">
                 <div class="text-4xl mb-2">🏺</div>
                 <h3 class="text-lg font-semibold text-pink-200 mb-2">The Appreciation Jar</h3>
                 <p id="jar-text" class="text-xs text-gray-300 mb-3">Click below to pull out a reason why you are so special!</p>
-                <button onclick="drawReason()" class="bg-purple-600 hover:bg-purple-700 text-white text-xs px-4 py-2 rounded-full transition">
-                    Pull a Note 💌
-                </button>
+                <button onclick="drawReason()" class="bg-purple-600 hover:bg-purple-700 text-white text-xs px-4 py-2 rounded-full transition">Pull a Note</button>
             </div>
-
-            <button onclick="goToPage(9)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">
-                Continue ➔
-            </button>
+            <button onclick="goToPage(9)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">Continue ➔</button>
         </div>
-
-        <!-- PAGE 9: TIME COUNTER & SCRATCH VOUCHERS -->
-        <!-- PAGE 9: SCRATCH-OFF VOUCHER -->
-<div id="page-9" class="page-step glass-card p-6 md:p-8 rounded-3xl text-center w-full hidden">
-    <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-2">A Special Voucher For You 🎁</h2>
-    <p class="text-xs md:text-sm text-gray-300 mb-6">Scratch below to reveal your birthday reward!</p>
-
-    <!-- Hidden Voucher Container -->
-    <div class="relative w-72 h-40 mx-auto rounded-2xl overflow-hidden shadow-xl border border-white/20 flex items-center justify-center bg-gradient-to-r from-pink-500/30 to-purple-500/30 p-4">
-        <p class="text-base font-bold text-pink-100 leading-relaxed">
-            Love you always and forever da purusha😘🫂💋
-        </p>
-        <canvas id="scratch-canvas" class="absolute inset-0 w-full h-full cursor-pointer z-10"></canvas>
-    </div>
-
-    <div class="mt-8 text-right">
-        <button onclick="goToPage(10)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">
-            Next Page ➔
-        </button>
-    </div>
-</div>
-
-            
-            <!-- Time Capsule Ticker -->
+        <!-- PAGE 9 -->
+        <div id="page-9" class="page-step glass-card p-6 md:p-8 rounded-3xl text-center w-full">
+            <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-2">A Special Voucher For You</h2>
+            <p class="text-xs md:text-sm text-gray-300 mb-6">Scratch below to reveal your birthday reward!</p>
             <div class="mb-6 p-4 rounded-2xl bg-white/10 border border-white/10">
-                <p class="text-xs text-gray-300 mb-1">time you have been making world brighter:</p>
+                <p class="text-xs text-gray-300 mb-1">Time you have been making world brighter:</p>
                 <div id="time-counter" class="text-sm md:text-base font-bold text-pink-300 tracking-wide">Calculating...</div>
             </div>
-
-            <!-- Scratch Card Gift Vouchers -->
             <p class="text-xs text-gray-300 mb-2">Scratch the card below with your finger or mouse!</p>
             <div class="scratch-container rounded-2xl overflow-hidden mb-6 border border-white/20">
                 <div class="w-full h-full bg-gradient-to-r from-pink-600 to-purple-600 flex items-center justify-center text-white font-bold text-sm p-4">
-                    🎉 Coupon: 1 love you forever ! 🎫
+                    Coupon: 1 love you forever da purusha! ❤️
                 </div>
                 <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
             </div>
-
-            <button onclick="goToPage(10)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">
-                Read Final Letter ➔
-            </button>
-        </div>
-
-        <!-- PAGE 10: HEARTFELT LETTER & SKY LANTERN -->
-       <!-- PAGE 10: VINTAGE SEALED LETTER WITH FLYING HEARTS -->
-<div id="page-10" class="page-step glass-card p-6 md:p-8 rounded-3xl text-center w-full hidden max-w-2xl mx-auto relative overflow-hidden">
-    <!-- Heart Particle Container -->
-    <div id="hearts-container" class="pointer-events-none absolute inset-0 z-50 overflow-hidden"></div>
-
-    <h2 class="text-2xl font-cursive font-bold text-pink-200 mb-2">A Special Letter For You 💌</h2>
-    <p class="text-xs text-gray-300 mb-6">Tap the sealed envelope below to open & read my letter...</p>
-
-    <!-- Interactive Envelope / Vintage Letter Container -->
-    <div class="relative w-full max-w-lg mx-auto min-h-[420px] flex items-center justify-center">
-        
-        <!-- CLOSED VINTAGE ENVELOPE -->
-        <div id="closed-envelope" onclick="openVintageLetter()" class="cursor-pointer bg-[#f3e5ab] hover:bg-[#ebd999] text-amber-950 border-2 border-[#c8b273] rounded-2xl p-8 shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col items-center justify-center gap-3 w-72 h-48 border-dashed">
-            <div class="text-5xl animate-bounce">✉️</div>
-            <div class="font-serif text-lg font-bold text-amber-950 tracking-wide">Tap to Open Letter</div>
-            <div class="text-[10px] text-amber-800 uppercase tracking-widest border-t border-[#c8b273] pt-1 font-semibold">Sealed with Love 💖</div>
-        </div>
-
-        <!-- OPENED VINTAGE PARCHMENT LETTER -->
-        <div id="opened-letter" class="hidden bg-[#fbf0d9] text-amber-950 rounded-2xl p-6 md:p-8 shadow-2xl border-4 border-[#d4be82] text-left font-serif leading-relaxed max-h-[60vh] overflow-y-auto transform transition-all duration-700 scale-95 opacity-0 relative" style="background-image: radial-gradient(#e6d3a7 1px, transparent 0); background-size: 16px 16px;">
-            
-            <div class="text-center font-serif text-2xl font-bold text-amber-950 mb-4 border-b-2 border-[#d4be82] pb-3">
-                📜 My Dearest Purusha 💖
-            </div>
-            
-            <!-- VINTAGE LETTER BODY -->
-            <div id="vintage-letter-body" class="space-y-4 text-xs md:text-sm text-amber-950 leading-relaxed">
-                <p>Hi, Assalamu Alaikum. 🌙 Wishing you the happiest birthday! 🎂✨ I miss being together with you so much on this special day, but I pray with all my heart that we get to celebrate every single one of your future birthdays side by side. 🤲💖 Always remember—never feel down or burdened by anything, because you have me right here with you. 🫂✨</p>
-                
-                <p>The gentle changes you’ve made for me, your patience, care, tolerance, and unconditional love mean more to me than words can say. 💕 I truly feel so blessed to have you in my life! The effort you put into us is unimaginable. 🥹 I know it isn't always easy handling my emotions and silliness, yet you handle everything with so much grace and warmth. Watching how softly you hold us together is just incredible. 🥰</p>
-                
-                <p>I admire your boldness, your inner calm, and the effortless way you let go of problems. 🌿 You have taught me so much, and you continuously inspire me to become a better version of myself. 🌸</p>
-                
-                <p>I know you will win in everything—in fact, you’ve already won! 👑 I pray that all your heart's desires and wishes come true, Insha Allah. ✨ Everything is going to be all right; this is just a passing phase. Soon, you will be living the exact life you once dreamed of. 🌟 Every piece will fall into place, and together, you will shape those pieces into a beautiful, peaceful reality. 🏡</p>
-                
-                <p>I can’t wait to live the life I imagine with you—a beautiful, warm, feel-good family together forever, Insha Allah. 💖 Please pray for us! I will always pray for your endless success, because you deserve to achieve everything your heart desires. Never lose your kindness, your honesty, or that wonderful soul of yours. ✨</p>
-                
-                <p class="font-semibold text-pink-700 pt-2 text-center text-sm md:text-base">
-                    Love you forever, and missing you so incredibly much! 💕🫂
-                </p>
-            </div>
-
-            <div class="mt-6 text-right font-serif text-base md:text-lg font-bold text-amber-950 border-t-2 border-[#d4be82] pt-3 italic">
-                Love you always forever da purusha😘🫂💋
+            <div class="mt-8 text-right">
+                <button onclick="goToPage(10)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">Read Final Letter ➔</button>
             </div>
         </div>
 
-    </div>
-
-    <!-- Navigation Buttons -->
-    <div class="mt-8 flex justify-between items-center">
-        <button onclick="goToPage(9)" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-xs transition">
-            ◀ Back
-        </button>
-        <button onclick="goToPage(11)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-xs font-semibold transition">
-            Next Page ➔
-        </button>
-    </div>
-</div>
-
-
-
-function openVintageLetter() {
-    const closedEnv = document.getElementById('closed-envelope');
-    const openedLet = document.getElementById('opened-letter');
-    
-    // Hide envelope & reveal letter with smooth zoom-in animation
-    closedEnv.classList.add('hidden');
-    openedLet.classList.remove('hidden');
-    
-    setTimeout(() => {
-        openedLet.classList.remove('scale-95', 'opacity-0');
-        openedLet.classList.add('scale-100', 'opacity-100');
-    }, 50);
-
-    // Burst 25 flying heart emojis across the screen
-    createFlyingHearts();
-}
-
-function createFlyingHearts() {
-    const container = document.getElementById('hearts-container');
-    const hearts = ['💖', '💕', '💗', '💓', '❤️', '✨', '🌸'];
-
-    for (let i = 0; i < 25; i++) {
-        const heart = document.createElement('div');
-        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-        heart.className = 'absolute text-2xl md:text-3xl transition-all duration-1000 ease-out pointer-events-none';
-        
-        // Random starting position near center
-        heart.style.left = `calc(50% + ${(Math.random() - 0.5) * 120}px)`;
-        heart.style.top = `calc(50% + ${(Math.random() - 0.5) * 60}px)`;
-        heart.style.opacity = '1';
-        
-        container.appendChild(heart);
-
-        // Animate heart flying upward and spreading out
-        setTimeout(() => {
-            const xOffset = (Math.random() - 0.5) * 350;
-            const yOffset = - (180 + Math.random() * 250);
-            heart.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(${1 + Math.random() * 0.8}) rotate(${(Math.random() - 0.5) * 60}deg)`;
-            heart.style.opacity = '0';
-        }, 30);
-
-        // Clean up heart after animation finishes
-        setTimeout(() => {
-            heart.remove();
-        }, 1200);
-    }
-}
-
-            <!-- Sky Lantern Wish -->
-            <div class="p-4 rounded-2xl bg-white/10 border border-white/10 text-center mb-4">
+        <!-- PAGE 10 -->
+        <div id="page-10" class="page-step glass-card p-6 md:p-8 rounded-3xl text-center w-full relative overflow-hidden">
+            <div id="hearts-container" class="pointer-events-none absolute inset-0 z-50 overflow-hidden"></div>
+            <h2 class="text-2xl font-cursive font-bold text-pink-200 mb-2">A Special Letter For You 💌</h2>
+            <p class="text-xs text-gray-300 mb-6">Tap the sealed envelope below to open & read my letter...</p>
+            <div class="relative w-full max-w-lg mx-auto min-h-[420px] flex items-center justify-center">
+                <div id="closed-envelope" onclick="openVintageLetter()" class="cursor-pointer bg-[#f3e5ab] hover:bg-[#ebd999] text-amber-950 border-2 border-[#c8b273] rounded-2xl p-8 shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col items-center justify-center gap-3 w-72 h-48 border-dashed">
+                    <div class="text-5xl animate-bounce">✉️</div>
+                    <div class="font-serif text-lg font-bold text-amber-950 tracking-wide">Tap to Open Letter</div>
+                    <div class="text-[10px] text-amber-800 uppercase tracking-widest border-t border-[#c8b273] pt-1 font-semibold">Sealed with Love ❤️</div>
+                </div>
+                <div id="opened-letter" class="hidden bg-[#fbf0d9] text-amber-950 rounded-2xl p-6 md:p-8 shadow-2xl border-4 border-[#d4be82] text-left font-serif leading-relaxed max-h-[60vh] overflow-y-auto transform transition-all duration-700 scale-95 opacity-0 relative" style="background-image: radial-gradient(#e6d3a7 1px, transparent 0); background-size: 16px 16px;">
+                    <div class="text-center font-serif text-2xl font-bold text-amber-950 mb-4 border-b-2 border-[#d4be82] pb-3">My Dearest Purusha</div>
+                    <div id="vintage-letter-body" class="space-y-4 text-xs md:text-sm text-amber-950 leading-relaxed">
+                        <p>Hi, Assalamu Alaikum. Wishing you the happiest birthday! I miss being together with you so much on this special day, but I pray with all my heart that we get to celebrate every single one of your future birthdays side by side. Always remember—never feel down or burdened by anything, because you have me right here with you.</p>
+                        <p>The gentle changes you've made for me, your patience, care, tolerance, and unconditional love mean more to me than words can say. I truly feel so blessed to have you in my life! The effort you put into us is unimaginable. I know it isn't always easy handling my emotions and silliness, yet you handle everything with so much grace and warmth. Watching how softly you hold us together is just incredible.</p>
+                        <p>I admire your boldness, your inner calm, and the effortless way you let go of problems. You have taught me so much, and you continuously inspire me to become a better version of myself.</p>
+                        <p>I know you will win in everything—in fact, you've already won! I pray that all your heart's desires and wishes come true, Insha Allah. Everything is going to be all right; this is just a passing phase. Soon, you will be living the exact life you once dreamed of. Every piece will fall into place, and together, you will shape those pieces into a beautiful, peaceful reality.</p>
+                        <p>I can't wait to live the life I imagine with you—a beautiful, warm, feel-good family together forever, Insha Allah. Please pray for us! I will always pray for your endless success, because you deserve to achieve everything your heart desires. Never lose your kindness, your honesty, or that wonderful soul of yours.</p>
+                        <p class="font-semibold text-pink-700 pt-2 text-center text-sm md:text-base">Love you forever, and missing you so incredibly much! 💕</p>
+                    </div>
+                    <div class="mt-6 text-right font-serif text-base md:text-lg font-bold text-amber-950 border-t-2 border-[#d4be82] pt-3 italic">Love you always forever da purusha</div>
+                </div>
+            </div>
+            <div class="mt-6 p-4 rounded-2xl bg-white/10 border border-white/10 text-center mb-4">
                 <p class="text-xs text-pink-200 mb-2 font-medium">Release a Birthday Sky Lantern 🏮</p>
                 <input type="text" id="sky-wish-input" placeholder="Type your birthday wish..." class="w-full text-xs p-2 rounded-lg bg-white/10 border border-white/20 text-white mb-2 text-center focus:outline-none">
-                <button onclick="releaseLantern()" class="bg-purple-600 hover:bg-purple-700 text-white text-xs px-4 py-2 rounded-full transition">
-                    Launch Wish Lantern ✨
-                </button>
+                <button onclick="releaseLantern()" class="bg-purple-600 hover:bg-purple-700 text-white text-xs px-4 py-2 rounded-full transition">Launch Wish Lantern ✨</button>
             </div>
-
-            <div class="text-right">
-                <button onclick="goToPage(11)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">
-                    Final Step ➔
-                </button>
+            <div class="mt-8 flex justify-between items-center">
+                <button onclick="goToPage(9)" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-xs transition">◀ Back</button>
+                <button onclick="goToPage(11)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-xs font-semibold transition">Final Step ➔</button>
             </div>
         </div>
 
-        <!-- PAGE 11: FINAL EMOTION & SEND TO CREATOR -->
+        <!-- PAGE 11 -->
         <div id="page-11" class="page-step glass-card p-8 rounded-3xl text-center w-full">
-            <div class="text-5xl mb-4">💖</div>
+            <div class="text-5xl mb-4">🎉</div>
             <h2 class="text-3xl font-bold text-pink-200 mb-2">Final Thoughts</h2>
             <p class="text-gray-300 text-sm mb-6">How do you feel right now at the end of this journey?</p>
-            
             <div class="grid grid-cols-3 gap-2 mb-6">
-                <button onclick="selectEmotion('final', 'Overjoyed 😭')" class="p-3 rounded-xl glass-card text-xs hover:bg-white/20 transition">😭 Overjoyed</button>
-                <button onclick="selectEmotion('final', 'Loved 🥰')" class="p-3 rounded-xl glass-card text-xs hover:bg-white/20 transition">🥰 Loved</button>
-                <button onclick="selectEmotion('final', 'Grateful 🙏')" class="p-3 rounded-xl glass-card text-xs hover:bg-white/20 transition">🙏 Grateful</button>
+                <button onclick="selectEmotion('final', 'Overjoyed')" class="p-3 rounded-xl glass-card text-xs hover:bg-white/20 transition">Overjoyed 🤩</button>
+                <button onclick="selectEmotion('final', 'Loved')" class="p-3 rounded-xl glass-card text-xs hover:bg-white/20 transition">Loved 🥰</button>
+                <button onclick="selectEmotion('final', 'Grateful')" class="p-3 rounded-xl glass-card text-xs hover:bg-white/20 transition">Grateful 🥹</button>
             </div>
-
-            <p class="text-xs text-gray-300 mb-4">Click below to send all your responses, comments, and answers directly back to me!</p>
-
-            <button onclick="submitFinalData()" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition">
-                Send My Responses to Creator 💌
-            </button>
+            <p class="text-xs text-gray-300 mb-4">Click below to send all your responses, comments, and answers directly back to me via email!</p>
+            <button onclick="submitFinalData()" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition">Send My Responses to Creator 💌</button>
             <p id="submit-status" class="text-xs text-pink-300 mt-3 font-semibold"></p>
         </div>
 
     </main>
 
-    <!-- CREATOR DASHBOARD MODAL (Hidden by default) -->
+    <!-- CREATOR MODAL -->
     <div id="creator-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="glass-card p-6 rounded-3xl max-w-lg w-full max-h-[80vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold text-pink-300">👑 Creator Live Dashboard</h3>
-                <button onclick="closeCreatorModal()" class="text-gray-400 hover:text-white">✕</button>
+                <h3 class="text-lg font-bold text-pink-300">Creator Live Dashboard</h3>
+                <button onclick="closeCreatorModal()" class="text-gray-400 hover:text-white font-bold text-lg">✕</button>
             </div>
-            <div id="creator-content" class="text-xs text-gray-200 space-y-2 whitespace-pre-wrap font-mono bg-black/40 p-4 rounded-xl">
-                No recorded responses yet.
-            </div>
+            <div id="creator-content" class="text-xs text-gray-200 space-y-2 whitespace-pre-wrap font-mono bg-black/40 p-4 rounded-xl">No recorded responses yet.</div>
         </div>
     </div>
 
-    <!-- JavaScript Logic -->
-    <script>
-        // CONFIGURATION
-        const CORRECT_PIN = "25102002"; // Secret Passcode
-        const FORMSPREE_ENDPOINT = https://formspree.io/f/mljjdqey
-        
-        // GLOBAL RESPONSE DATA LOG
-        let responseData = {
-            quizAnswers: [],
-            preEmotion: "",
-            postEmotion: "",
-            finalEmotion: "",
-            reactions: {},
-            comments: "",
-            skyWish: "",
-            timestamp: new Date().toLocaleString()
-        };
+    <!-- Link to the separate JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
+// CONFIGURATION
+const CORRECT_PIN = "25102002"; // Secret Passcode (Birth Date)
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mljjdqey";
+
+// GLOBAL RESPONSE DATA LOG
+let responseData = {
+    quizAnswers: [],
+    preEmotion: "",
+    postEmotion: "",
+    finalEmotion: "",
+    reactions: {},
+    comments: "",
+    skyWish: "",
+    timestamp: new Date().toLocaleString()
+};
+
 // MEMORY WALL DATA & LOGIC
-        const memoriesData = [
-            { img: "photo1.jpg", caption: "See how happy we are. It's so beautiful together." },
-            { img: "photo2.jpg", caption: "See how cute we are looking." },
-            { img: "photo3.jpg", caption: "See, this is the beautiful family I have ever seen. This is so good. I wish to be a part of it." },
-            { img: "photo4.jpg", caption: "Haha, see, I was like waiting for the lift, not so. It's not true. I was waiting for your reply." },
-            { img: "photo5.jpg", caption: "See this grown handsome man. Damn good, damn good. You're looking so handsome." },
-            { img: "photo6.jpg", caption: "See, this is your birthday pic. Remember 2024 birthday. I think that's the finest day in my life." },
-            { img: "photo7.jpg", caption: "Look how you are looking at me. It gives me blush whenever I see this photo." },
-            { img: "photo8.jpg", caption: "I miss those days, like these are all the days we spend time together, like it's so rare nowadays. See how we are looking at each other." },
-            { img: "photo9.jpg", caption: "Look at the attitude you have, it suits you so well. You're damn handsome." },
-            { img: "photo10.jpg", caption: "Remember the days I come to visit you." }
-        ];
+const memoriesData = [
+    { img: "photo1.jpg", caption: "See how happy we are. It's so beautiful together." },
+    { img: "photo2.jpg", caption: "See how cute we are looking." },
+    { img: "photo3.jpg", caption: "See, this is the beautiful family I have ever seen. This is so good. I wish to be a part of it." },
+    { img: "photo4.jpg", caption: "Haha, see, I was like waiting for the lift. Not so. It's not true. I was waiting for your reply." },
+    { img: "photo5.jpg", caption: "See this grown handsome man. Damn good, damn good. You're looking so handsome." },
+    { img: "photo6.jpg", caption: "See, this is your birthday pic. Remember 2024 birthday. I think that's the finest day in my life." },
+    { img: "photo7.jpg", caption: "Look how you are looking at me. It gives me blush whenever I see this photo." },
+    { img: "photo8.jpg", caption: "I miss those days, like these are all the days we spend time together, like it's so rare nowadays. See how we are looking at each other." },
+    { img: "photo9.jpg", caption: "Look at the attitude you have, it suits you so well. You're damn handsome." },
+    { img: "photo10.jpg", caption: "Remember the days I come to visit you." }
+];
 
-        let activeMemoryIndex = 0;
+let activeMemoryIndex = 0;
 
-        function openMemoryModal(index) {
-            activeMemoryIndex = index;
-            updateModalContent();
-            document.getElementById('memory-modal').classList.remove('hidden');
-            document.getElementById('memory-modal').classList.add('flex');
-            playTone(523.25, 0.2);
-        }
+function openMemoryModal(index) {
+    activeMemoryIndex = index;
+    updateModalContent();
+    document.getElementById('memory-modal').classList.remove('hidden');
+    document.getElementById('memory-modal').classList.add('flex');
+    playTone(523.25, 0.2);
+}
 
-        function closeMemoryModal() {
-            document.getElementById('memory-modal').classList.add('hidden');
-            document.getElementById('memory-modal').classList.remove('flex');
-        }
+function closeMemoryModal() {
+    document.getElementById('memory-modal').classList.add('hidden');
+    document.getElementById('memory-modal').classList.remove('flex');
+}
 
-        function updateModalContent() {
-            const mem = memoriesData[activeMemoryIndex];
-            document.getElementById('modal-img').src = mem.img;
-            document.getElementById('modal-caption').innerText = mem.caption;
-            document.getElementById('modal-counter').innerText = `${activeMemoryIndex + 1} / ${memoriesData.length}`;
-            
-            const existingReaction = responseData.reactions[`photo${activeMemoryIndex + 1}`] || "";
-            document.getElementById('modal-reaction-status').innerText = existingReaction ? `Reacted: ${existingReaction}` : "";
-        }
+function updateModalContent() {
+    const mem = memoriesData[activeMemoryIndex];
+    document.getElementById('modal-img').src = mem.img;
+    document.getElementById('modal-caption').innerText = mem.caption;
+    document.getElementById('modal-counter').innerText = `${activeMemoryIndex + 1} / ${memoriesData.length}`;
 
-        function nextMemory() {
-            activeMemoryIndex = (activeMemoryIndex + 1) % memoriesData.length;
-            updateModalContent();
-            playTone(659.25, 0.15);
-        }
+    const existingReaction = responseData.reactions[`photo${activeMemoryIndex + 1}`] || "";
+    document.getElementById('modal-reaction-status').innerText = existingReaction ? `Reacted: ${existingReaction}` : "";
+}
 
-        function prevMemory() {
-            activeMemoryIndex = (activeMemoryIndex - 1 + memoriesData.length) % memoriesData.length;
-            updateModalContent();
-            playTone(440, 0.15);
-        }
+function nextMemory() {
+    activeMemoryIndex = (activeMemoryIndex + 1) % memoriesData.length;
+    updateModalContent();
+    playTone(659.25, 0.15);
+}
 
-        function reactToCurrentModal(emoji) {
-            const photoId = `photo${activeMemoryIndex + 1}`;
-            responseData.reactions[photoId] = emoji;
-            document.getElementById('modal-reaction-status').innerText = `Reacted: ${emoji}`;
-            playTone(880, 0.2);
-        }
-        // QUIZ DATA
-        const quizQuestions = [
-            { q: "1. Who takes longer to reply to messages?", options: ["You 🙈", "Me 🤷‍♂️", "Both equally"] },
-            { q: "2. Who is the better cook?", options: ["You 👩‍🍳", "Me 👨‍🍳", "Ordering food wins 🍕"] },
-            { q: "3. What is our ultimate comfort activity?", options: ["Late night drives 🚗", "Bingeing shows 🍿", "Eating good food 🍔"] },
-            { q: "4. Who is more dramatic?", options: ["Definitely You 🎭", "Definitely Me 🙋‍♂️", "100% Equal"] },
-            { q: "5. Guess how many days we've been connected?", options: ["Hundreds!", "Thousands!", "Lost count!"] },
-            { q: "6. Who falls asleep first during movie night?", options: ["You 😴", "Me 💤", "Neither!"] },
-            { q: "7. Who makes the decisions on where to eat?", options: ["You 🌮", "Me 🍣", "We argue for 1 hour first"] },
-            { q: "8. What is my favorite thing about you?", options: ["Your laugh 😄", "Your kindness 💖", "Everything! ✨"] },
-            { q: "9. Who is more likely to buy useless cute things?", options: ["You 🛍️", "Me 📦", "Both of us"] },
-            { q: "10. Are you ready for your main birthday surprise?", options: ["YES! 🎉", "ABSOLUTELY! ✨", "100% READY! 🔥"] }
-        ];
-        let currentQuizIndex = 0;
+function prevMemory() {
+    activeMemoryIndex = (activeMemoryIndex - 1 + memoriesData.length) % memoriesData.length;
+    updateModalContent();
+    playTone(440.0, 0.15);
+}
 
-        // WEB AUDIO SYNTHESIS FOR BACKGROUND MUSIC & SFX
-        let audioCtx = null;
-        let isMusicPlaying = false;
-        let musicInterval = null;
+function reactToCurrentModal(emoji) {
+    const photoId = `photo${activeMemoryIndex + 1}`;
+    responseData.reactions[photoId] = emoji;
+    document.getElementById('modal-reaction-status').innerText = `Reacted: ${emoji}`;
+    playTone(880.0, 0.2);
+}
 
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-        }
+// QUIZ DATA
+const quizQuestions = [
+    { q: "1. Who takes longer to reply to messages?", options: ["You", "Me", "Both equally"] },
+    { q: "2. Who is the better cook?", options: ["You", "Me", "Ordering food wins"] },
+    { q: "3. What is our ultimate comfort activity?", options: ["Late night drives", "Bingeing shows", "Eating good food"] },
+    { q: "4. Who is more dramatic?", options: ["Definitely You", "Definitely Me", "100% Equal"] },
+    { q: "5. Guess how many days we've been connected?", options: ["Hundreds!", "Thousands!", "Lost count!"] },
+    { q: "6. Who falls asleep first during movie night?", options: ["You", "Me", "Neither!"] },
+    { q: "7. Who makes the decisions on where to eat?", options: ["You", "Me", "We argue for 1 hour first"] },
+    { q: "8. What is my favorite thing about you?", options: ["Your laugh", "Your kindness", "Everything!"] },
+    { q: "9. Who is more likely to buy useless cute things?", options: ["You", "Me", "Both of us"] },
+    { q: "10. Are you ready for your main birthday surprise?", options: ["YES!", "ABSOLUTELY!", "100% READY!"] }
+];
 
-        function playTone(freq, duration, type = 'sine') {
-            initAudio();
-            try {
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                osc.type = type;
-                osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch(e) {}
-        }
+let currentQuizIndex = 0;
 
-        function toggleMusic() {
-            initAudio();
-            isMusicPlaying = !isMusicPlaying;
-            document.getElementById('music-status').innerText = isMusicPlaying ? "ON 🎶" : "OFF";
-            
-            if (isMusicPlaying) {
-                const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00]; // Soft piano scale
-                let i = 0;
-                musicInterval = setInterval(() => {
-                    playTone(notes[i % notes.length], 1.2, 'sine');
-                    i++;
-                }, 1400);
-            } else {
-                clearInterval(musicInterval);
-            }
-        }
+// WEB AUDIO SYNTHESIS
+let audioCtx = null;
+let isMusicPlaying = false;
+let musicInterval = null;
 
-        // NAVIGATION
-        function goToPage(pageNum) {
-            document.querySelectorAll('.page-step').forEach(p => p.classList.remove('active'));
-            document.getElementById(`page-${pageNum}`).classList.add('active');
-            if (pageNum === 3) loadQuizQuestion();
-            if (pageNum === 9) initScratchCard();
-        }
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+}
 
-        // PASSCODE CHECK
-        function checkPasscode() {
-            const val = document.getElementById('passcode-input').value;
-            if (val === CORRECT_PIN || CORRECT_PIN === "") {
-                playTone(523.25, 0.3); // Chime
-                goToPage(3);
-            } else {
-                document.getElementById('pin-error').classList.remove('hidden');
-                playTone(150, 0.4, 'sawtooth');
-            }
-        }
+function playTone(freq, duration, type = 'sine') {
+    initAudio();
+    try {
+        let osc = audioCtx.createOscillator();
+        let gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    } catch (e) {}
+}
 
-        // QUIZ LOGIC
-        function loadQuizQuestion() {
-            const q = quizQuestions[currentQuizIndex];
-            document.getElementById('quiz-progress').innerText = `Question ${currentQuizIndex + 1} / ${quizQuestions.length}`;
-            document.getElementById('quiz-question').innerText = q.q;
-            
-            const optsContainer = document.getElementById('quiz-options');
-            optsContainer.innerHTML = '';
-            
-            q.options.forEach((opt) => {
-                const btn = document.createElement('button');
-                btn.className = "w-full text-left p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-xs font-medium transition";
-                btn.innerText = opt;
-                btn.onclick = () => {
-                    responseData.quizAnswers[currentQuizIndex] = opt;
-                    playTone(440, 0.2);
-                    nextQuizQuestion();
-                };
-                optsContainer.appendChild(btn);
-            });
-        }
+function toggleMusic() {
+    initAudio();
+    isMusicPlaying = !isMusicPlaying;
+    document.getElementById('music-status').innerText = isMusicPlaying ? "ON" : "OFF";
+    if (isMusicPlaying) {
+        const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00];
+        let i = 0;
+        musicInterval = setInterval(() => {
+            playTone(notes[i % notes.length], 1.2, 'sine');
+            i++;
+        }, 1400);
+    } else {
+        clearInterval(musicInterval);
+    }
+}
 
-        function nextQuizQuestion() {
-            currentQuizIndex++;
-            if (currentQuizIndex < quizQuestions.length) {
-                loadQuizQuestion();
-            } else {
-                goToPage(4); // Move to Pre-Wish Emotion Check
-            }
-        }
+// NAVIGATION
+function goToPage(pageNum) {
+    document.querySelectorAll('.page-step').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(`page-${pageNum}`);
+    if (target) target.classList.add('active');
+    if (pageNum === 3) loadQuizQuestion();
+    if (pageNum === 9) initScratchCard();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-        // EMOTION SELECTION
-        function selectEmotion(type, val) {
-            playTone(523.25, 0.2);
-            if (type === 'pre') { responseData.preEmotion = val; goToPage(5); }
-            if (type === 'post') { responseData.postEmotion = val; goToPage(7); }
-            if (type === 'final') { responseData.finalEmotion = val; }
-        }
+// PASSCODE CHECK
+function checkPasscode() {
+    const val = document.getElementById('passcode-input').value.trim();
+    if (val === CORRECT_PIN || CORRECT_PIN === "") {
+        playTone(523.25, 0.3);
+        goToPage(3);
+    } else {
+        document.getElementById('pin-error').classList.remove('hidden');
+        playTone(150.0, 0.4, 'sawtooth');
+    }
+}
 
-        // CANDLE BLOW
-        function blowCandle() {
-            document.getElementById('flame').style.opacity = '0';
-            document.getElementById('candle-status').innerText = '🎉 Happy Birthday! Candle blown!';
-            document.getElementById('cake-next-btn').classList.remove('hidden');
-            playTone(587.33, 0.5); // Celebration chime
-            
-            // Confetti Explosion
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        }
+// QUIZ LOGIC
+function loadQuizQuestion() {
+    const q = quizQuestions[currentQuizIndex];
+    document.getElementById('quiz-progress').innerText = `Question ${currentQuizIndex + 1} / ${quizQuestions.length}`;
+    document.getElementById('quiz-question').innerText = q.q;
+    const optsContainer = document.getElementById('quiz-options');
+    optsContainer.innerHTML = "";
+    q.options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.className = "w-full text-left p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-xs font-medium transition";
+        btn.innerText = opt;
+        btn.onclick = () => {
+            responseData.quizAnswers[currentQuizIndex] = opt;
+            playTone(440.0, 0.2);
+            nextQuizQuestion();
+        };
+        optsContainer.appendChild(btn);
+    });
+}
 
-        // REACTIONS & GALLERY
-        function reactToItem(id, emoji) {
-            responseData.reactions[id] = emoji;
-            document.getElementById(`reaction-${id}`).innerText = `Reacted: ${emoji}`;
-            playTone(659.25, 0.2);
-        }
+function nextQuizQuestion() {
+    currentQuizIndex++;
+    if (currentQuizIndex < quizQuestions.length) {
+        loadQuizQuestion();
+    } else {
+        goToPage(4);
+    }
+}
 
-        function saveGalleryComments() {
-            responseData.comments = document.getElementById('gallery-comment').value;
-        }
+// EMOTION SELECTION
+function selectEmotion(type, val) {
+    playTone(523.25, 0.2);
+    if (type === 'pre') {
+        responseData.preEmotion = val;
+        goToPage(5);
+    } else if (type === 'post') {
+        responseData.postEmotion = val;
+        goToPage(7);
+    } else if (type === 'final') {
+        responseData.finalEmotion = val;
+    }
+}
 
-        // ENVELOPES & REASON JAR
-        function openEnvelope(title, msg) {
-            alert(`✉️ ${title}:\n\n"${msg}"`);
-            playTone(349.23, 0.3);
-        }
+// CANDLE BLOW
+function blowCandle() {
+    document.getElementById('flame').style.opacity = '0';
+    document.getElementById('candle-status').innerText = "Happy Birthday! Candle blown!";
+    document.getElementById('cake-next-btn').classList.remove('hidden');
+    playTone(587.33, 0.5);
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+}
 
-        const reasons = [
-            "Your smile brightens up any room instantly.",
-            "You are deeply kind and care for everyone around you.",
-            "Your hilarious sense of humor never fails to make me laugh.",
-            "You are resilient, strong, and truly inspiring.",
-            "Just being around you feels like home."
-        ];
+function saveGalleryComments() {
+    responseData.comments = document.getElementById('gallery-comment').value;
+}
 
-        function drawReason() {
-            const r = reasons[Math.floor(Math.random() * reasons.length)];
-            document.getElementById('jar-text').innerText = `✨ "${r}"`;
-            playTone(523.25, 0.3);
-        }
+// ENVELOPES & REASON JAR
+function openEnvelope(title, msg) {
+    alert(`${title}\n\n${msg}`);
+    playTone(349.23, 0.3);
+}
 
-        // SCRATCH CARD
-        function initScratchCard() {
-            const canvas = document.getElementById('scratch-canvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
+const reasons = [
+    "Your smile brightens up any room instantly.",
+    "You are deeply kind and care for everyone around you.",
+    "Your hilarious sense of humor never fails to make me laugh.",
+    "You are resilient, strong, and truly inspiring.",
+    "Just being around you feels like home."
+];
 
-            ctx.fillStyle = '#a855f7';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '12px Poppins';
-            ctx.textAlign = 'center';
-            ctx.fillText('Scratch here with mouse/finger! ✨', canvas.width / 2, canvas.height / 2);
+function drawReason() {
+    const randReason = reasons[Math.floor(Math.random() * reasons.length)];
+    document.getElementById('jar-text').innerText = randReason;
+    playTone(523.25, 0.3);
+}
 
-            let isDrawing = false;
-            function scratch(e) {
-                if (!isDrawing) return;
-                const rect = canvas.getBoundingClientRect();
-                const x = (e.clientX || e.touches[0].clientX) - rect.left;
-                const y = (e.clientY || e.touches[0].clientY) - rect.top;
-                ctx.globalCompositeOperation = 'destination-out';
-                ctx.beginPath();
-                ctx.arc(x, y, 18, 0, Math.PI * 2);
-                ctx.fill();
-            }
+// SCRATCH CARD
+let scratchInitialized = false;
+function initScratchCard() {
+    const canvas = document.getElementById('scratch-canvas');
+    if (!canvas || scratchInitialized) return;
+    scratchInitialized = true;
 
-            canvas.addEventListener('mousedown', () => isDrawing = true);
-            canvas.addEventListener('mouseup', () => isDrawing = false);
-            canvas.addEventListener('mousemove', scratch);
-            canvas.addEventListener('touchstart', () => isDrawing = true);
-            canvas.addEventListener('touchend', () => isDrawing = false);
-            canvas.addEventListener('touchmove', scratch);
-        }
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    ctx.fillStyle = '#a855f7';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '14px Poppins';
+    ctx.textAlign = 'center';
+    ctx.fillText("Scratch here with mouse/finger!", canvas.width / 2, canvas.height / 2);
 
-        // SKY LANTERN
-        function releaseLantern() {
-            const val = document.getElementById('sky-wish-input').value;
-            if (val) {
-                responseData.skyWish = val;
-                alert('🏮 Your sky lantern has been released into the night sky!');
-                playTone(880, 0.6);
-            }
-        }
+    let isDrawing = false;
+    function scratch(e) {
+        if (!isDrawing) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX || e.touches[0].clientX) - rect.left;
+        const y = (e.clientY || e.touches[0].clientY) - rect.top;
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 18, 0, Math.PI * 2);
+        ctx.fill();
+    }
 
-        // SUBMIT DATA TO FORMSPREE / LOCAL LOG
-        function submitFinalData() {
-            const status = document.getElementById('submit-status');
-            status.innerText = "Sending your responses...";
+    canvas.addEventListener('mousedown', () => isDrawing = true);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mousemove', scratch);
+    canvas.addEventListener('touchstart', () => isDrawing = true);
+    canvas.addEventListener('touchend', () => isDrawing = false);
+    canvas.addEventListener('touchmove', scratch);
+}
 
-            fetch(FORMSPREE_ENDPOINT, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(responseData)
-            }).then(res => {
-                status.innerText = "❤️ Responses sent successfully to Creator!";
-            }).catch(err => {
-                status.innerText = "Saved locally! (Formspree ID needed for live email delivery)";
-            });
+// SKY LANTERN
+function releaseLantern() {
+    const val = document.getElementById('sky-wish-input').value.trim();
+    if (val) {
+        responseData.skyWish = val;
+        alert('🏮 Your sky lantern has been released into the night sky!');
+        playTone(880.0, 0.6);
+    } else {
+        alert('Please enter a wish first!');
+    }
+}
 
-            // Update local dashboard
-            document.getElementById('creator-content').innerText = JSON.stringify(responseData, null, 2);
-        }
-
-        // TIME COUNTER TICKER
-        setInterval(() => {
-            const startDate = new Date('2002-10-25'); // Adjust start date if desired
-            const now = new Date();
-            const diff = now - startDate;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const mins = Math.floor((diff / 1000 / 60) % 60);
-            const secs = Math.floor((diff / 1000) % 60);
-            const el = document.getElementById('time-counter');
-            if (el) el.innerText = `${days} Days, ${hours} Hours, ${mins} Mins, ${secs} Secs`;
-        }, 1000);
-
-        // CREATOR DASHBOARD MODAL TRIGGER
-        let logoClicks = 0;
-        function handleLogoClick() {
-            logoClicks++;
-            if (logoClicks >= 3) {
-                document.getElementById('creator-modal').classList.remove('hidden');
-                document.getElementById('creator-modal').classList.add('flex');
-                document.getElementById('creator-content').innerText = JSON.stringify(responseData, null, 2);
-                logoClicks = 0;
-            }
-        }
-        function closeCreatorModal() {
-            document.getElementById('creator-modal').classList.add('hidden');
-            document.getElementById('creator-modal').classList.remove('flex');
-        }
-        window.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-                handleLogoClick(); handleLogoClick(); handleLogoClick();
-            }
-        });
-
-        // BACKGROUND STARDUST CANVAS ANIMATION
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        for (let i = 0; i < 50; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 2,
-                alpha: Math.random(),
-                speed: Math.random() * 0.5 + 0.1
-            });
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.y -= p.speed;
-                if (p.y < 0) p.y = canvas.height;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
-                ctx.fill();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-        <!-- PAGE 10: VINTAGE SEALED LETTER WITH FLYING HEARTS -->
-<div id="page-10" class="page-step glass-card p-6 md:p-8 rounded-3xl text-center w-full hidden max-w-2xl mx-auto relative overflow-hidden">
-    <!-- Heart Particle Container -->
-    <div id="hearts-container" class="pointer-events-none absolute inset-0 z-50 overflow-hidden"></div>
-
-    <h2 class="text-2xl font-cursive font-bold text-pink-200 mb-2">A Special Letter For You 💌</h2>
-    <p class="text-xs text-gray-300 mb-6">Tap the sealed envelope below to open & read my letter...</p>
-
-    <!-- Interactive Envelope / Vintage Letter Container -->
-    <div class="relative w-full max-w-lg mx-auto min-h-[420px] flex items-center justify-center">
-        
-        <!-- CLOSED VINTAGE ENVELOPE -->
-        <div id="closed-envelope" onclick="openVintageLetter()" class="cursor-pointer bg-[#f3e5ab] hover:bg-[#ebd999] text-amber-950 border-2 border-[#c8b273] rounded-2xl p-8 shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col items-center justify-center gap-3 w-72 h-48 border-dashed">
-            <div class="text-5xl animate-bounce">✉️</div>
-            <div class="font-serif text-lg font-bold text-amber-950 tracking-wide">Tap to Open Letter</div>
-            <div class="text-[10px] text-amber-800 uppercase tracking-widest border-t border-[#c8b273] pt-1 font-semibold">Sealed with Love 💖</div>
-        </div>
-
-        <!-- OPENED VINTAGE PARCHMENT LETTER -->
-        <div id="opened-letter" class="hidden bg-[#fbf0d9] text-amber-950 rounded-2xl p-6 md:p-8 shadow-2xl border-4 border-[#d4be82] text-left font-serif leading-relaxed max-h-[60vh] overflow-y-auto transform transition-all duration-700 scale-95 opacity-0 relative" style="background-image: radial-gradient(#e6d3a7 1px, transparent 0); background-size: 16px 16px;">
-            
-            <div class="text-center font-serif text-2xl font-bold text-amber-950 mb-4 border-b-2 border-[#d4be82] pb-3">
-                📜 My Dearest Purusha 💖
-            </div>
-            
-            <!-- VINTAGE LETTER BODY -->
-            <div id="vintage-letter-body" class="space-y-4 text-xs md:text-sm text-amber-950 leading-relaxed">
-                <p>Hi, Assalamu Alaikum. 🌙 Wishing you the happiest birthday! 🎂✨ I miss being together with you so much on this special day, but I pray with all my heart that we get to celebrate every single one of your future birthdays side by side. 🤲💖 Always remember—never feel down or burdened by anything, because you have me right here with you. 🫂✨</p>
-                
-                <p>The gentle changes you’ve made for me, your patience, care, tolerance, and unconditional love mean more to me than words can say. 💕 I truly feel so blessed to have you in my life! The effort you put into us is unimaginable. 🥹 I know it isn't always easy handling my emotions and silliness, yet you handle everything with so much grace and warmth. Watching how softly you hold us together is just incredible. 🥰</p>
-                
-                <p>I admire your boldness, your inner calm, and the effortless way you let go of problems. 🌿 You have taught me so much, and you continuously inspire me to become a better version of myself. 🌸</p>
-                
-                <p>I know you will win in everything—in fact, you’ve already won! 👑 I pray that all your heart's desires and wishes come true, Insha Allah. ✨ Everything is going to be all right; this is just a passing phase. Soon, you will be living the exact life you once dreamed of. 🌟 Every piece will fall into place, and together, you will shape those pieces into a beautiful, peaceful reality. 🏡</p>
-                
-                <p>I can’t wait to live the life I imagine with you—a beautiful, warm, feel-good family together forever, Insha Allah. 💖 Please pray for us! I will always pray for your endless success, because you deserve to achieve everything your heart desires. Never lose your kindness, your honesty, or that wonderful soul of yours. ✨</p>
-                
-                <p class="font-semibold text-pink-700 pt-2 text-center text-sm md:text-base">
-                    Love you forever, and missing you so incredibly much! 💕🫂
-                </p>
-            </div>
-
-            <div class="mt-6 text-right font-serif text-base md:text-lg font-bold text-amber-950 border-t-2 border-[#d4be82] pt-3 italic">
-                Love you always forever da purusha😘🫂💋
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Navigation Buttons -->
-    <div class="mt-8 flex justify-between items-center">
-        <button onclick="goToPage(9)" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-xs transition">
-            ◀ Back
-        </button>
-        <button onclick="goToPage(11)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-xs font-semibold transition">
-            Next Page ➔
-        </button>
-    </div>
-</div>
-
-
-
+// VINTAGE LETTER & FLYING HEARTS
 function openVintageLetter() {
     const closedEnv = document.getElementById('closed-envelope');
     const openedLet = document.getElementById('opened-letter');
-    
-    // Hide envelope & reveal letter with smooth zoom-in animation
     closedEnv.classList.add('hidden');
     openedLet.classList.remove('hidden');
-    
     setTimeout(() => {
         openedLet.classList.remove('scale-95', 'opacity-0');
         openedLet.classList.add('scale-100', 'opacity-100');
     }, 50);
-
-    // Burst 25 flying heart emojis across the screen
     createFlyingHearts();
 }
 
 function createFlyingHearts() {
     const container = document.getElementById('hearts-container');
-    const hearts = ['💖', '💕', '💗', '💓', '❤️', '✨', '🌸'];
-
+    if (!container) return;
+    const hearts = ['💖', '💕', '💗', '💓', '✨'];
     for (let i = 0; i < 25; i++) {
         const heart = document.createElement('div');
         heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
         heart.className = 'absolute text-2xl md:text-3xl transition-all duration-1000 ease-out pointer-events-none';
-        
-        // Random starting position near center
         heart.style.left = `calc(50% + ${(Math.random() - 0.5) * 120}px)`;
         heart.style.top = `calc(50% + ${(Math.random() - 0.5) * 60}px)`;
         heart.style.opacity = '1';
-        
         container.appendChild(heart);
 
-        // Animate heart flying upward and spreading out
         setTimeout(() => {
             const xOffset = (Math.random() - 0.5) * 350;
-            const yOffset = - (180 + Math.random() * 250);
+            const yOffset = -(180 + Math.random() * 250);
             heart.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(${1 + Math.random() * 0.8}) rotate(${(Math.random() - 0.5) * 60}deg)`;
             heart.style.opacity = '0';
-        }, 30);
+        }, 50);
 
-        // Clean up heart after animation finishes
-        setTimeout(() => {
-            heart.remove();
-        }, 1200);
+        setTimeout(() => { heart.remove(); }, 1200);
     }
 }
-    </script>
-</body>
-</html>
+
+// SUBMIT DATA TO FORMSPREE
+function submitFinalData() {
+    const status = document.getElementById('submit-status');
+    status.innerText = "Sending your responses...";
+    responseData.timestamp = new Date().toLocaleString();
+
+    fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            _subject: "💖 Birthday Website Activity Log & Reaction!",
+            ...responseData
+        })
+    }).then(res => {
+        if (res.ok) {
+            status.innerText = "✨ Responses sent successfully to Creator email!";
+        } else {
+            status.innerText = "Saved locally! (Check Formspree configuration if email fails)";
+        }
+        document.getElementById('creator-content').innerText = JSON.stringify(responseData, null, 2);
+    }).catch(err => {
+        status.innerText = "Network error. Saved locally!";
+        document.getElementById('creator-content').innerText = JSON.stringify(responseData, null, 2);
+    });
+}
+
+// TIME COUNTER TICKER (Start Date: October 25, 2002)
+setInterval(() => {
+    const startDate = new Date("2002-10-25T00:00:00");
+    const now = new Date();
+    const diff = now - startDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+    
+    const el = document.getElementById('time-counter');
+    if (el) el.innerText = `${days} Days, ${hours} Hours, ${mins} Mins, ${secs} Secs`;
+}, 1000);
+
+// CREATOR DASHBOARD MODAL TRIGGER
+let logoClicks = 0;
+function handleLogoClick() {
+    logoClicks++;
+    if (logoClicks >= 3) {
+        document.getElementById('creator-modal').classList.remove('hidden');
+        document.getElementById('creator-modal').classList.add('flex');
+        document.getElementById('creator-content').innerText = JSON.stringify(responseData, null, 2);
+        logoClicks = 0;
+    }
+}
+
+function closeCreatorModal() {
+    document.getElementById('creator-modal').classList.add('hidden');
+    document.getElementById('creator-modal').classList.remove('flex');
+}
+
+window.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+        handleLogoClick();
+        handleLogoClick();
+        handleLogoClick();
+    }
+});
+
+// BACKGROUND STARDUST CANVAS ANIMATION
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+for (let i = 0; i < 50; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2,
+        alpha: Math.random(),
+        speed: Math.random() * 0.5 + 0.1
+    });
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        p.y -= p.speed;
+        if (p.y < 0) p.y = canvas.height;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+        ctx.fill();
+    });
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();

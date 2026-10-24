@@ -85,6 +85,32 @@
     <!-- Main Interactive Container -->
     <main class="relative z-10 max-w-2xl mx-auto w-full flex-1 flex items-center justify-center">
 
+    <!-- VINTAGE "OUR SONGS" PLAYER -->
+        <div class="glass-card p-5 rounded-3xl mb-6 w-full max-w-2xl mx-auto border border-white/20">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="text-3xl animate-bounce">📻</div>
+                <div>
+                    <h4 class="text-sm font-bold text-pink-200">Our Songs Playlist</h4>
+                    <p class="text-[11px] text-gray-300">Melodies that remind me of us ✨</p>
+                </div>
+            </div>
+            
+            <div class="space-y-2">
+                <div class="flex items-center justify-between p-2 rounded-xl bg-white/10 text-xs">
+                    <span class="font-medium text-pink-100">1. That 2024 Birthday Memory Song 🎂</span>
+                    <a href="https://open.spotify.com" target="_blank" class="px-3 py-1 bg-pink-500 hover:bg-pink-600 rounded-full text-[10px] font-semibold text-white transition">Play 🎧</a>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-xl bg-white/10 text-xs">
+                    <span class="font-medium text-pink-100">2. Our Favorite Road Trip Song 🚗</span>
+                    <a href="https://open.spotify.com" target="_blank" class="px-3 py-1 bg-pink-500 hover:bg-pink-600 rounded-full text-[10px] font-semibold text-white transition">Play 🎧</a>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-xl bg-white/10 text-xs">
+                    <span class="font-medium text-pink-100">3. The Song That Always Makes Me Blush 💖</span>
+                    <a href="https://open.spotify.com" target="_blank" class="px-3 py-1 bg-pink-500 hover:bg-pink-600 rounded-full text-[10px] font-semibold text-white transition">Play 🎧</a>
+                </div>
+            </div>
+        </div>
+
         <!-- PAGE 1: COVER PAGE -->
         <div id="page-1" class="page-step active glass-card p-8 rounded-3xl text-center w-full">
             <div class="text-6xl mb-4 animate-bounce">🎈</div>
@@ -187,163 +213,100 @@
         </div>
 
         <!-- PAGE 7: MEMORY GALLERY & COMMENTS -->
+        <!-- PAGE 7: MEMORY WALL GRID & POP-UP -->
         <div id="page-7" class="page-step glass-card p-6 md:p-8 rounded-3xl w-full">
-            <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-2 text-center">Memory Gallery</h2>
-            <p class="text-gray-300 text-xs md:text-sm mb-6 text-center">React and leave a note on our favorite moments!</p>
+            <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-2 text-center">Our Memory Wall 🖼️</h2>
+            <p class="text-gray-300 text-xs md:text-sm mb-6 text-center">Tap any memory box to open the photo & caption!</p>
             
-            <div class="space-y-6 max-h-96 overflow-y-auto pr-2">
-                <!-- Photo Card 1 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10">
-                    <div class="bg-purple-900/40 rounded-xl h-48 flex items-center justify-center text-gray-400 mb-3">
-                        <!-- Photo Card 1 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo1.jpg" alt="Memory 1" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">See how happy we are. It's so beautiful together.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo1', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo1', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo1', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo1', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo1" class="text-pink-300 font-semibold"></span>
+            <!-- 10 Tile Memory Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6 max-h-80 overflow-y-auto p-1">
+                <button onclick="openMemoryModal(0)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">📸</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 1</span>
+                </button>
+                <button onclick="openMemoryModal(1)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">💖</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 2</span>
+                </button>
+                <button onclick="openMemoryModal(2)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">👨‍👩‍👧</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 3</span>
+                </button>
+                <button onclick="openMemoryModal(3)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">💬</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 4</span>
+                </button>
+                <button onclick="openMemoryModal(4)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">✨</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 5</span>
+                </button>
+                <button onclick="openMemoryModal(5)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">🎂</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 6</span>
+                </button>
+                <button onclick="openMemoryModal(6)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">😳</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 7</span>
+                </button>
+                <button onclick="openMemoryModal(7)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">🥺</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 8</span>
+                </button>
+                <button onclick="openMemoryModal(8)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">😎</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 9</span>
+                </button>
+                <button onclick="openMemoryModal(9)" class="h-24 glass-card rounded-2xl flex flex-col items-center justify-center gap-1 hover:scale-105 hover:border-pink-400 transition cursor-pointer">
+                    <span class="text-2xl">🚗</span>
+                    <span class="text-xs font-semibold text-pink-200">Memory 10</span>
+                </button>
+            </div>
+
+            <!-- Page Comment -->
+            <div class="pt-2">
+                <label class="block text-xs text-gray-300 mb-1">Leave a note on our memory wall:</label>
+                <textarea id="gallery-comment" placeholder="Write something sweet..." class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-white text-xs placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+            </div>
+
+            <div class="mt-6 text-right">
+                <button onclick="saveGalleryComments(); goToPage(8);" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">
+                    Next Page ➔
+                </button>
+            </div>
+        </div>
+
+        <!-- MEMORY POP-UP MODAL -->
+        <div id="memory-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+            <div class="glass-card p-6 rounded-3xl max-w-sm w-full relative">
+                <button onclick="closeMemoryModal()" class="absolute top-3 right-4 text-gray-300 hover:text-white text-lg font-bold">✕</button>
+                
+                <img id="modal-img" src="photo1.jpg" alt="Memory" class="w-full h-56 object-cover rounded-xl mb-3 shadow-md">
+                <p id="modal-caption" class="text-xs md:text-sm font-medium text-pink-100 mb-4 leading-relaxed text-center"></p>
+
+                <!-- Reactions -->
+                <div class="flex items-center justify-between text-xs mb-4 bg-white/10 p-2 rounded-xl">
+                    <span class="text-gray-300">React:</span>
+                    <div class="flex gap-3">
+                        <button onclick="reactToCurrentModal('❤️')" class="hover:scale-125 transition">❤️</button>
+                        <button onclick="reactToCurrentModal('🥹')" class="hover:scale-125 transition">🥹</button>
+                        <button onclick="reactToCurrentModal('🤣')" class="hover:scale-125 transition">🤣</button>
+                        <button onclick="reactToCurrentModal('🤗')" class="hover:scale-125 transition">🤗</button>
                     </div>
+                    <span id="modal-reaction-status" class="text-pink-300 font-semibold"></span>
                 </div>
 
-                <!-- Photo Card 2 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo2.jpg" alt="Memory 2" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">See how cute we are looking.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo2', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo2', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo2', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo2', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo2" class="text-pink-300 font-semibold"></span>
-                    </div>
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center pt-2 border-t border-white/10">
+                    <button onclick="prevMemory()" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs transition">
+                        ◀ Prev
+                    </button>
+                    <span id="modal-counter" class="text-xs text-gray-300 font-mono">1 / 10</span>
+                    <button onclick="nextMemory()" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full text-xs font-semibold transition">
+                        Next ▶
+                    </button>
                 </div>
-
-                <!-- Photo Card 3 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo3.jpg" alt="Memory 3" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">See, this is the beautiful family I have ever seen. This is so good. I wish to be a part of it.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo3', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo3', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo3', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo3', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo3" class="text-pink-300 font-semibold"></span>
-                    </div>
-                </div>
-
-                <!-- Photo Card 4 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo4.jpg" alt="Memory 4" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">Haha, see, I was like waiting for the lift, not so. It's not true. I was waiting for your reply.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo4', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo4', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo4', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo4', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo4" class="text-pink-300 font-semibold"></span>
-                    </div>
-                </div>
-
-                <!-- Photo Card 5 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo5.jpg" alt="Memory 5" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">See this grown handsome man. Damn good, damn good. You're looking so handsome.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo5', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo5', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo5', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo5', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo5" class="text-pink-300 font-semibold"></span>
-                    </div>
-                </div>
-
-                <!-- Photo Card 6 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo6.jpg" alt="Memory 6" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">See, this is your birthday pic. Remember 2024 birthday. I think that's the finest day in my life.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo6', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo6', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo6', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo6', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo6" class="text-pink-300 font-semibold"></span>
-                    </div>
-                </div>
-
-                <!-- Photo Card 7 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo7.jpg" alt="Memory 7" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">Look how you are looking at me. It gives me blush whenever I see this photo.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo7', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo7', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo7', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo7', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo7" class="text-pink-300 font-semibold"></span>
-                    </div>
-                </div>
-
-                <!-- Photo Card 8 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo8.jpg" alt="Memory 8" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">I miss those days, like these are all the days we spend time together, like it's so rare nowadays. See how we are looking at each other.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo8', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo8', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo8', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo8', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo8" class="text-pink-300 font-semibold"></span>
-                    </div>
-                </div>
-
-                <!-- Photo Card 9 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo9.jpg" alt="Memory 9" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">Look at the attitude you have, it suits you so well. You're damn handsome.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo9', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo9', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo9', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo9', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo9" class="text-pink-300 font-semibold"></span>
-                    </div>
-                </div>
-
-                <!-- Photo Card 10 -->
-                <div class="bg-white/10 p-4 rounded-2xl border border-white/10 mb-4">
-                    <img src="photo10.jpg" alt="Memory 10" class="w-full h-48 object-cover rounded-xl mb-3">
-                    <p class="text-sm font-medium text-pink-100 mb-2">Remember the days I come to visit you.</p>
-                    <div class="flex items-center justify-between text-xs">
-                        <div class="flex gap-2">
-                            <button onclick="reactToItem('photo10', '❤️')" class="hover:scale-125 transition">❤️</button>
-                            <button onclick="reactToItem('photo10', '🥹')" class="hover:scale-125 transition">🥹</button>
-                            <button onclick="reactToItem('photo10', '🤣')" class="hover:scale-125 transition">🤣</button>
-                            <button onclick="reactToItem('photo10', '🤗')" class="hover:scale-125 transition">🤗</button>
-                        </div>
-                        <span id="reaction-photo10" class="text-pink-300 font-semibold"></span>
-                    </div>
-                </div>
+            </div>
+        </div>
 
                     </div>
                     <p class="text-sm font-medium text-pink-100 mb-2">Our very first adventure together!</p>
@@ -402,8 +365,26 @@
         </div>
 
         <!-- PAGE 9: TIME COUNTER & SCRATCH VOUCHERS -->
-        <div id="page-9" class="page-step glass-card p-6 md:p-8 rounded-3xl w-full text-center">
-            <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-2">Time Together & Vouchers</h2>
+        <!-- PAGE 9: SCRATCH-OFF VOUCHER -->
+<div id="page-9" class="page-step glass-card p-6 md:p-8 rounded-3xl text-center w-full hidden">
+    <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-2">A Special Voucher For You 🎁</h2>
+    <p class="text-xs md:text-sm text-gray-300 mb-6">Scratch below to reveal your birthday reward!</p>
+
+    <!-- Hidden Voucher Container -->
+    <div class="relative w-72 h-40 mx-auto rounded-2xl overflow-hidden shadow-xl border border-white/20 flex items-center justify-center bg-gradient-to-r from-pink-500/30 to-purple-500/30 p-4">
+        <p class="text-base font-bold text-pink-100 leading-relaxed">
+            Love you always and forever da purusha😘🫂💋
+        </p>
+        <canvas id="scratch-canvas" class="absolute inset-0 w-full h-full cursor-pointer z-10"></canvas>
+    </div>
+
+    <div class="mt-8 text-right">
+        <button onclick="goToPage(10)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">
+            Next Page ➔
+        </button>
+    </div>
+</div>
+
             
             <!-- Time Capsule Ticker -->
             <div class="mb-6 p-4 rounded-2xl bg-white/10 border border-white/10">
@@ -426,14 +407,115 @@
         </div>
 
         <!-- PAGE 10: HEARTFELT LETTER & SKY LANTERN -->
-        <div id="page-10" class="page-step glass-card p-6 md:p-8 rounded-3xl w-full">
-            <h2 class="text-3xl font-cursive font-bold text-pink-200 mb-4 text-center">A Letter From My Heart</h2>
-            <div class="text-xs md:text-sm text-gray-200 leading-relaxed space-y-3 max-h-64 overflow-y-auto pr-2 mb-6">
-                <p>Happy Birthday!</p>
-                <p>I wanted to create something truly unique and memorable for you today because you deserve nothing less than the absolute best.</p>
-                <p>Thank you for bringing so much light, laughter, and warmth into my life. Every moment shared with you is a gift I cherish deeply.</p>
-                <p>May this year bring you endless joy, success, and all the happiness your heart can hold!</p>
+       <!-- PAGE 10: VINTAGE SEALED LETTER WITH FLYING HEARTS -->
+<div id="page-10" class="page-step glass-card p-6 md:p-8 rounded-3xl text-center w-full hidden max-w-2xl mx-auto relative overflow-hidden">
+    <!-- Heart Particle Container -->
+    <div id="hearts-container" class="pointer-events-none absolute inset-0 z-50 overflow-hidden"></div>
+
+    <h2 class="text-2xl font-cursive font-bold text-pink-200 mb-2">A Special Letter For You 💌</h2>
+    <p class="text-xs text-gray-300 mb-6">Tap the sealed envelope below to open & read my letter...</p>
+
+    <!-- Interactive Envelope / Vintage Letter Container -->
+    <div class="relative w-full max-w-lg mx-auto min-h-[420px] flex items-center justify-center">
+        
+        <!-- CLOSED VINTAGE ENVELOPE -->
+        <div id="closed-envelope" onclick="openVintageLetter()" class="cursor-pointer bg-[#f3e5ab] hover:bg-[#ebd999] text-amber-950 border-2 border-[#c8b273] rounded-2xl p-8 shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col items-center justify-center gap-3 w-72 h-48 border-dashed">
+            <div class="text-5xl animate-bounce">✉️</div>
+            <div class="font-serif text-lg font-bold text-amber-950 tracking-wide">Tap to Open Letter</div>
+            <div class="text-[10px] text-amber-800 uppercase tracking-widest border-t border-[#c8b273] pt-1 font-semibold">Sealed with Love 💖</div>
+        </div>
+
+        <!-- OPENED VINTAGE PARCHMENT LETTER -->
+        <div id="opened-letter" class="hidden bg-[#fbf0d9] text-amber-950 rounded-2xl p-6 md:p-8 shadow-2xl border-4 border-[#d4be82] text-left font-serif leading-relaxed max-h-[60vh] overflow-y-auto transform transition-all duration-700 scale-95 opacity-0 relative" style="background-image: radial-gradient(#e6d3a7 1px, transparent 0); background-size: 16px 16px;">
+            
+            <div class="text-center font-serif text-2xl font-bold text-amber-950 mb-4 border-b-2 border-[#d4be82] pb-3">
+                📜 My Dearest Purusha 💖
             </div>
+            
+            <!-- VINTAGE LETTER BODY -->
+            <div id="vintage-letter-body" class="space-y-4 text-xs md:text-sm text-amber-950 leading-relaxed">
+                <p>Hi, Assalamu Alaikum. 🌙 Wishing you the happiest birthday! 🎂✨ I miss being together with you so much on this special day, but I pray with all my heart that we get to celebrate every single one of your future birthdays side by side. 🤲💖 Always remember—never feel down or burdened by anything, because you have me right here with you. 🫂✨</p>
+                
+                <p>The gentle changes you’ve made for me, your patience, care, tolerance, and unconditional love mean more to me than words can say. 💕 I truly feel so blessed to have you in my life! The effort you put into us is unimaginable. 🥹 I know it isn't always easy handling my emotions and silliness, yet you handle everything with so much grace and warmth. Watching how softly you hold us together is just incredible. 🥰</p>
+                
+                <p>I admire your boldness, your inner calm, and the effortless way you let go of problems. 🌿 You have taught me so much, and you continuously inspire me to become a better version of myself. 🌸</p>
+                
+                <p>I know you will win in everything—in fact, you’ve already won! 👑 I pray that all your heart's desires and wishes come true, Insha Allah. ✨ Everything is going to be all right; this is just a passing phase. Soon, you will be living the exact life you once dreamed of. 🌟 Every piece will fall into place, and together, you will shape those pieces into a beautiful, peaceful reality. 🏡</p>
+                
+                <p>I can’t wait to live the life I imagine with you—a beautiful, warm, feel-good family together forever, Insha Allah. 💖 Please pray for us! I will always pray for your endless success, because you deserve to achieve everything your heart desires. Never lose your kindness, your honesty, or that wonderful soul of yours. ✨</p>
+                
+                <p class="font-semibold text-pink-700 pt-2 text-center text-sm md:text-base">
+                    Love you forever, and missing you so incredibly much! 💕🫂
+                </p>
+            </div>
+
+            <div class="mt-6 text-right font-serif text-base md:text-lg font-bold text-amber-950 border-t-2 border-[#d4be82] pt-3 italic">
+                Love you always forever da purusha😘🫂💋
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="mt-8 flex justify-between items-center">
+        <button onclick="goToPage(9)" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-xs transition">
+            ◀ Back
+        </button>
+        <button onclick="goToPage(11)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-xs font-semibold transition">
+            Next Page ➔
+        </button>
+    </div>
+</div>
+
+
+
+function openVintageLetter() {
+    const closedEnv = document.getElementById('closed-envelope');
+    const openedLet = document.getElementById('opened-letter');
+    
+    // Hide envelope & reveal letter with smooth zoom-in animation
+    closedEnv.classList.add('hidden');
+    openedLet.classList.remove('hidden');
+    
+    setTimeout(() => {
+        openedLet.classList.remove('scale-95', 'opacity-0');
+        openedLet.classList.add('scale-100', 'opacity-100');
+    }, 50);
+
+    // Burst 25 flying heart emojis across the screen
+    createFlyingHearts();
+}
+
+function createFlyingHearts() {
+    const container = document.getElementById('hearts-container');
+    const hearts = ['💖', '💕', '💗', '💓', '❤️', '✨', '🌸'];
+
+    for (let i = 0; i < 25; i++) {
+        const heart = document.createElement('div');
+        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.className = 'absolute text-2xl md:text-3xl transition-all duration-1000 ease-out pointer-events-none';
+        
+        // Random starting position near center
+        heart.style.left = `calc(50% + ${(Math.random() - 0.5) * 120}px)`;
+        heart.style.top = `calc(50% + ${(Math.random() - 0.5) * 60}px)`;
+        heart.style.opacity = '1';
+        
+        container.appendChild(heart);
+
+        // Animate heart flying upward and spreading out
+        setTimeout(() => {
+            const xOffset = (Math.random() - 0.5) * 350;
+            const yOffset = - (180 + Math.random() * 250);
+            heart.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(${1 + Math.random() * 0.8}) rotate(${(Math.random() - 0.5) * 60}deg)`;
+            heart.style.opacity = '0';
+        }, 30);
+
+        // Clean up heart after animation finishes
+        setTimeout(() => {
+            heart.remove();
+        }, 1200);
+    }
+}
 
             <!-- Sky Lantern Wish -->
             <div class="p-4 rounded-2xl bg-white/10 border border-white/10 text-center mb-4">
@@ -490,7 +572,7 @@
     <script>
         // CONFIGURATION
         const CORRECT_PIN = "25102002"; // Secret Passcode
-        const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORMSPREE_ID"; // Replace with your Formspree ID
+        const FORMSPREE_ENDPOINT = https://formspree.io/f/mljjdqey
         
         // GLOBAL RESPONSE DATA LOG
         let responseData = {
@@ -503,7 +585,63 @@
             skyWish: "",
             timestamp: new Date().toLocaleString()
         };
+// MEMORY WALL DATA & LOGIC
+        const memoriesData = [
+            { img: "photo1.jpg", caption: "See how happy we are. It's so beautiful together." },
+            { img: "photo2.jpg", caption: "See how cute we are looking." },
+            { img: "photo3.jpg", caption: "See, this is the beautiful family I have ever seen. This is so good. I wish to be a part of it." },
+            { img: "photo4.jpg", caption: "Haha, see, I was like waiting for the lift, not so. It's not true. I was waiting for your reply." },
+            { img: "photo5.jpg", caption: "See this grown handsome man. Damn good, damn good. You're looking so handsome." },
+            { img: "photo6.jpg", caption: "See, this is your birthday pic. Remember 2024 birthday. I think that's the finest day in my life." },
+            { img: "photo7.jpg", caption: "Look how you are looking at me. It gives me blush whenever I see this photo." },
+            { img: "photo8.jpg", caption: "I miss those days, like these are all the days we spend time together, like it's so rare nowadays. See how we are looking at each other." },
+            { img: "photo9.jpg", caption: "Look at the attitude you have, it suits you so well. You're damn handsome." },
+            { img: "photo10.jpg", caption: "Remember the days I come to visit you." }
+        ];
 
+        let activeMemoryIndex = 0;
+
+        function openMemoryModal(index) {
+            activeMemoryIndex = index;
+            updateModalContent();
+            document.getElementById('memory-modal').classList.remove('hidden');
+            document.getElementById('memory-modal').classList.add('flex');
+            playTone(523.25, 0.2);
+        }
+
+        function closeMemoryModal() {
+            document.getElementById('memory-modal').classList.add('hidden');
+            document.getElementById('memory-modal').classList.remove('flex');
+        }
+
+        function updateModalContent() {
+            const mem = memoriesData[activeMemoryIndex];
+            document.getElementById('modal-img').src = mem.img;
+            document.getElementById('modal-caption').innerText = mem.caption;
+            document.getElementById('modal-counter').innerText = `${activeMemoryIndex + 1} / ${memoriesData.length}`;
+            
+            const existingReaction = responseData.reactions[`photo${activeMemoryIndex + 1}`] || "";
+            document.getElementById('modal-reaction-status').innerText = existingReaction ? `Reacted: ${existingReaction}` : "";
+        }
+
+        function nextMemory() {
+            activeMemoryIndex = (activeMemoryIndex + 1) % memoriesData.length;
+            updateModalContent();
+            playTone(659.25, 0.15);
+        }
+
+        function prevMemory() {
+            activeMemoryIndex = (activeMemoryIndex - 1 + memoriesData.length) % memoriesData.length;
+            updateModalContent();
+            playTone(440, 0.15);
+        }
+
+        function reactToCurrentModal(emoji) {
+            const photoId = `photo${activeMemoryIndex + 1}`;
+            responseData.reactions[photoId] = emoji;
+            document.getElementById('modal-reaction-status').innerText = `Reacted: ${emoji}`;
+            playTone(880, 0.2);
+        }
         // QUIZ DATA
         const quizQuestions = [
             { q: "1. Who takes longer to reply to messages?", options: ["You 🙈", "Me 🤷‍♂️", "Both equally"] },
@@ -797,6 +935,115 @@
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
+        <!-- PAGE 10: VINTAGE SEALED LETTER WITH FLYING HEARTS -->
+<div id="page-10" class="page-step glass-card p-6 md:p-8 rounded-3xl text-center w-full hidden max-w-2xl mx-auto relative overflow-hidden">
+    <!-- Heart Particle Container -->
+    <div id="hearts-container" class="pointer-events-none absolute inset-0 z-50 overflow-hidden"></div>
+
+    <h2 class="text-2xl font-cursive font-bold text-pink-200 mb-2">A Special Letter For You 💌</h2>
+    <p class="text-xs text-gray-300 mb-6">Tap the sealed envelope below to open & read my letter...</p>
+
+    <!-- Interactive Envelope / Vintage Letter Container -->
+    <div class="relative w-full max-w-lg mx-auto min-h-[420px] flex items-center justify-center">
+        
+        <!-- CLOSED VINTAGE ENVELOPE -->
+        <div id="closed-envelope" onclick="openVintageLetter()" class="cursor-pointer bg-[#f3e5ab] hover:bg-[#ebd999] text-amber-950 border-2 border-[#c8b273] rounded-2xl p-8 shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col items-center justify-center gap-3 w-72 h-48 border-dashed">
+            <div class="text-5xl animate-bounce">✉️</div>
+            <div class="font-serif text-lg font-bold text-amber-950 tracking-wide">Tap to Open Letter</div>
+            <div class="text-[10px] text-amber-800 uppercase tracking-widest border-t border-[#c8b273] pt-1 font-semibold">Sealed with Love 💖</div>
+        </div>
+
+        <!-- OPENED VINTAGE PARCHMENT LETTER -->
+        <div id="opened-letter" class="hidden bg-[#fbf0d9] text-amber-950 rounded-2xl p-6 md:p-8 shadow-2xl border-4 border-[#d4be82] text-left font-serif leading-relaxed max-h-[60vh] overflow-y-auto transform transition-all duration-700 scale-95 opacity-0 relative" style="background-image: radial-gradient(#e6d3a7 1px, transparent 0); background-size: 16px 16px;">
+            
+            <div class="text-center font-serif text-2xl font-bold text-amber-950 mb-4 border-b-2 border-[#d4be82] pb-3">
+                📜 My Dearest Purusha 💖
+            </div>
+            
+            <!-- VINTAGE LETTER BODY -->
+            <div id="vintage-letter-body" class="space-y-4 text-xs md:text-sm text-amber-950 leading-relaxed">
+                <p>Hi, Assalamu Alaikum. 🌙 Wishing you the happiest birthday! 🎂✨ I miss being together with you so much on this special day, but I pray with all my heart that we get to celebrate every single one of your future birthdays side by side. 🤲💖 Always remember—never feel down or burdened by anything, because you have me right here with you. 🫂✨</p>
+                
+                <p>The gentle changes you’ve made for me, your patience, care, tolerance, and unconditional love mean more to me than words can say. 💕 I truly feel so blessed to have you in my life! The effort you put into us is unimaginable. 🥹 I know it isn't always easy handling my emotions and silliness, yet you handle everything with so much grace and warmth. Watching how softly you hold us together is just incredible. 🥰</p>
+                
+                <p>I admire your boldness, your inner calm, and the effortless way you let go of problems. 🌿 You have taught me so much, and you continuously inspire me to become a better version of myself. 🌸</p>
+                
+                <p>I know you will win in everything—in fact, you’ve already won! 👑 I pray that all your heart's desires and wishes come true, Insha Allah. ✨ Everything is going to be all right; this is just a passing phase. Soon, you will be living the exact life you once dreamed of. 🌟 Every piece will fall into place, and together, you will shape those pieces into a beautiful, peaceful reality. 🏡</p>
+                
+                <p>I can’t wait to live the life I imagine with you—a beautiful, warm, feel-good family together forever, Insha Allah. 💖 Please pray for us! I will always pray for your endless success, because you deserve to achieve everything your heart desires. Never lose your kindness, your honesty, or that wonderful soul of yours. ✨</p>
+                
+                <p class="font-semibold text-pink-700 pt-2 text-center text-sm md:text-base">
+                    Love you forever, and missing you so incredibly much! 💕🫂
+                </p>
+            </div>
+
+            <div class="mt-6 text-right font-serif text-base md:text-lg font-bold text-amber-950 border-t-2 border-[#d4be82] pt-3 italic">
+                Love you always forever da purusha😘🫂💋
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="mt-8 flex justify-between items-center">
+        <button onclick="goToPage(9)" class="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-xs transition">
+            ◀ Back
+        </button>
+        <button onclick="goToPage(11)" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full text-xs font-semibold transition">
+            Next Page ➔
+        </button>
+    </div>
+</div>
+
+
+
+function openVintageLetter() {
+    const closedEnv = document.getElementById('closed-envelope');
+    const openedLet = document.getElementById('opened-letter');
+    
+    // Hide envelope & reveal letter with smooth zoom-in animation
+    closedEnv.classList.add('hidden');
+    openedLet.classList.remove('hidden');
+    
+    setTimeout(() => {
+        openedLet.classList.remove('scale-95', 'opacity-0');
+        openedLet.classList.add('scale-100', 'opacity-100');
+    }, 50);
+
+    // Burst 25 flying heart emojis across the screen
+    createFlyingHearts();
+}
+
+function createFlyingHearts() {
+    const container = document.getElementById('hearts-container');
+    const hearts = ['💖', '💕', '💗', '💓', '❤️', '✨', '🌸'];
+
+    for (let i = 0; i < 25; i++) {
+        const heart = document.createElement('div');
+        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.className = 'absolute text-2xl md:text-3xl transition-all duration-1000 ease-out pointer-events-none';
+        
+        // Random starting position near center
+        heart.style.left = `calc(50% + ${(Math.random() - 0.5) * 120}px)`;
+        heart.style.top = `calc(50% + ${(Math.random() - 0.5) * 60}px)`;
+        heart.style.opacity = '1';
+        
+        container.appendChild(heart);
+
+        // Animate heart flying upward and spreading out
+        setTimeout(() => {
+            const xOffset = (Math.random() - 0.5) * 350;
+            const yOffset = - (180 + Math.random() * 250);
+            heart.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(${1 + Math.random() * 0.8}) rotate(${(Math.random() - 0.5) * 60}deg)`;
+            heart.style.opacity = '0';
+        }, 30);
+
+        // Clean up heart after animation finishes
+        setTimeout(() => {
+            heart.remove();
+        }, 1200);
+    }
+}
     </script>
 </body>
 </html>
